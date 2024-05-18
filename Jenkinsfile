@@ -1,10 +1,14 @@
 pipeline {
     agent any
+    environment {
+            REPO_URL = 'https://github.com/rajeev3012/devops-project.git'
+            BRANCH_NAME = 'main'
+        }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/rajeev3012/devops-project.git'
+                git branch: "${BRANCH_NAME}", url: "${REPO_URL}"
             }
         }
         stage('Build Docker Image') {
